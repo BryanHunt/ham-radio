@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="net.springfieldusa.ham.radio.registry">
+   <implementation class="net.springfieldusa.ham.radio.registry.RadioRegistryComponent"/>
+   <service>
+      <provide interface="net.springfieldusa.ham.radio.RadioRegistry"/>
+   </service>
+   <reference bind="bindRadioService" cardinality="0..1" interface="net.springfieldusa.ham.radio.RadioService" name="RadioService" policy="dynamic" unbind="unbindRadioService"/>
+</scr:component>

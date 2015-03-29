@@ -1,0 +1,257 @@
+@GenModel(suppressInterfaces="true", copyrightText="Copyright (c) 2015 Bryan Hunt\n\nAll rights reserved. This program and the accompanying materials\nare made available under the terms of the Eclipse Public License v1.0\nwhich accompanies this distribution, and is available at\nhttp://www.eclipse.org/legal/epl-v10.html\n\nContributors:\n    Bryan Hunt - initial API and implementation\n")
+@GenModel(runtimePlatform="RCP")
+package net.springfieldusa.ham.radio
+
+import net.springfieldusa.ham.units.UnitValue
+import net.springfieldusa.ham.units.UnitOfMeasure
+
+class OperatingFrequency extends UnitValue<Long>
+{
+	op double scaleValue(Long value, UnitOfMeasure units)
+	{
+		value / units.multiplier
+	}
+}
+
+class TransmitPower extends UnitValue<Long>
+{
+	op double scaleValue(Long value, UnitOfMeasure units)
+	{
+		value / units.multiplier
+	}	
+}
+
+class Wavelength extends UnitValue<Double>
+{
+	op double scaleValue(Double value, UnitOfMeasure units)
+	{
+		value / units.multiplier
+	}	
+}
+
+class Radio
+{
+	String name
+	refers RadioType ^type
+	contains ProgrammedRadioSetting[] settings
+	contains ProgrammedRadioChannel[] channels
+}
+
+class RadioManufacturer
+{
+	String name
+	contains RadioModel[] models
+}
+
+class RadioModel
+{
+	String name
+	refers RadioType ^type
+}
+
+class RadioBand
+{
+	contains Wavelength wavelength
+	contains OperatingFrequency minFrequency
+	contains OperatingFrequency maxFrequency
+}
+
+class RadioType
+{
+	String manufacturer
+	String model
+	String programmingScheme
+	int minChannelNumber
+	int maxChannelNumber
+	refers RadioBand[] bands
+}
+
+class RadioSetting
+{
+	String name
+	String description
+}
+
+class ProgrammedRadioSetting
+{
+	refers RadioSetting baseSetting
+	String value
+}
+
+class RadioChannel
+{
+	String channelName
+	contains OperatingFrequency transmitFrequency
+	contains OperatingFrequency receiveFrequency
+	Tone transmitTone
+	Tone receiveTone
+	String[] tags
+}
+
+class ProgrammedRadioChannel
+{
+	int channelNumber
+	contains TransmitPower power
+	refers RadioChannel baseChannel
+}
+
+enum Tone
+{
+	NONE as "NONE" = 0
+
+	D023 as "023" = 1
+  D025 as "025" = 2
+  D026 as "026" = 3
+  D031 as "031" = 4
+  D032 as "032" = 5
+  D036 as "036" = 6
+  D043 as "043" = 7
+  D047 as "047" = 8
+  D051 as "051" = 8
+  D053 as "053" = 10
+  D054 as "054" = 11
+  D065 as "065" = 12
+	D071 as "071" = 13
+  D072 as "072" = 14
+  D073 as "073" = 15
+  D074 as "074" = 16
+  D114 as "114" = 17
+  D115 as "115" = 18
+  D116 as "116" = 19
+  D122 as "122" = 20
+  D125 as "125" = 21
+  D131 as "131" = 22
+  D132 as "132" = 23
+  D134 as "134" = 24
+	D143 as "143" = 25
+  D145 as "145" = 26
+  D152 as "152" = 27
+  D155 as "155" = 28
+  D156 as "156" = 29
+  D162 as "162" = 30
+  D165 as "165" = 31
+  D172 as "172" = 32
+  D174 as "174" = 33
+  D205 as "205" = 34
+  D212 as "212" = 35
+  D223 as "223" = 36
+	D225 as "225" = 37
+  D226 as "226" = 38
+  D243 as "243" = 39
+  D244 as "244" = 40
+  D245 as "245" = 41
+  D246 as "246" = 42
+  D251 as "251" = 43
+  D252 as "252" = 44
+  D255 as "255" = 45
+  D261 as "261" = 46
+  D263 as "263" = 47
+  D265 as "265" = 48
+	D266 as "266" = 49
+  D271 as "271" = 50
+  D274 as "274" = 51
+  D306 as "306" = 52
+  D311 as "311" = 53
+  D315 as "315" = 54
+  D325 as "325" = 55
+  D331 as "331" = 56
+  D332 as "332" = 57
+  D343 as "343" = 58
+  D346 as "346" = 59
+  D351 as "351" = 60
+	D356 as "356" = 61
+  D364 as "364" = 62
+  D365 as "365" = 63
+  D371 as "371" = 64
+  D411 as "411" = 65
+  D412 as "412" = 66
+  D413 as "413" = 67
+  D423 as "423" = 68
+  D431 as "431" = 69
+  D432 as "432" = 70
+  D445 as "445" = 71
+  D446 as "446" = 72
+	D452 as "452" = 73
+  D454 as "454" = 74
+  D455 as "455" = 75
+  D462 as "462" = 76
+  D464 as "464" = 77
+  D465 as "465" = 78
+  D466 as "466" = 79
+  D503 as "503" = 80
+  D506 as "506" = 81
+  D516 as "516" = 82
+  D523 as "523" = 83
+  D526 as "526" = 84
+	D532 as "532" = 85
+  D546 as "546" = 86
+  D565 as "565" = 87
+  D606 as "606" = 88
+  D612 as "612" = 89
+  D624 as "624" = 90
+  D627 as "627" = 91
+  D631 as "631" = 92
+  D632 as "632" = 93
+  D654 as "654" = 94
+  D662 as "662" = 95
+  D664 as "664" = 96
+	D703 as "703" = 97
+  D712 as "712" = 98
+  D723 as "723" = 99
+  D731 as "731" = 100
+  D732 as "732" = 101
+  D734 as "734" = 102
+  D743 as "743" = 103
+  D754 as "754" = 104
+  
+  C67_0 as "67.0" = 670
+  C69_3 as "69.3" = 693
+  C71_9 as "71.9" = 719
+  C74_4 as "74.4" = 744
+  C77_0 as "77.0" = 770
+  C79_7 as "79.7" = 797
+  C82_5 as "82.5" = 825
+  C85_4 as "85.4" = 854
+	C88_5 as "88.5" = 885
+  C91_5 as "91.5" = 915
+  C94_8 as "94.8" = 948
+  C97_4 as "97.4" = 974
+  C100_0 as "100.0" = 1000
+  C103_5 as "103.5" = 1035
+  C107_2 as "107.2" = 1072
+  C110_9 as "110.9" = 1109
+	C114_8 as "114.8" = 1148
+  C118_8 as "118.8" = 1188
+  C123_0 as "123.0" = 1230
+  C127_3 as "127.3" = 1273
+  C131_8 as "131.8" = 1318
+  C136_5 as "136.5" = 1365
+  C141_3 as "141.3" = 1413
+  C146_2 as "146.2" = 1462
+	C151_4 as "151.4" = 1514
+  C156_7 as "156.7" = 1567
+  C159_8 as "159.8" = 1598
+  C162_2 as "162.2" = 1622
+  C165_5 as "165.5" = 1655
+  C167_9 as "167.9" = 1679
+  C171_3 as "171.3" = 1713
+  C173_8 as "173.8" = 1738
+	C177_3 as "177.3" = 1773
+  C179_9 as "179.9" = 1799
+  C183_5 as "183.5" = 1835
+  C186_2 as "186.2" = 1862
+  C189_9 as "189.9" = 1899
+  C192_8 as "192.8" = 1928
+  C196_6 as "196.6" = 1966
+  C199_5 as "199.5" = 1995
+	C203_5 as "203.5" = 2035
+  C206_5 as "206.5" = 2065
+  C210_7 as "210.7" = 2107
+  C218_1 as "218.1" = 2181
+  C225_7 as "225.7" = 2257
+  C229_1 as "229.1" = 2291
+  C233_6 as "233.6" = 2336
+  C241_8 as "241.8" = 2418
+	C250_3 as "250.3" = 2503
+  C254_1 as "254.1" = 2541
+}

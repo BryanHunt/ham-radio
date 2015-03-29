@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Baofeng
+Bundle-SymbolicName: net.springfieldusa.ham.radio.baofeng
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: net.springfieldusa.ham.radio;bundle-version="1.0.0",
+ net.springfieldusa.io.serial;bundle-version="0.1.0",
+ org.eclipselabs.emodeling.api;bundle-version="1.0.0"
+Service-Component: OSGI-INF/radio.xml,
+ OSGI-INF/uri_handler.xml

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_iUZTsMi5EeSYyb2aHOX-nQ" elementId="org.eclipse.e4.ide.application" bindingContexts="_iUZTuci5EeSYyb2aHOX-nQ">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_iUZTsci5EeSYyb2aHOX-nQ" label="net.springfieldusa.ham.ui" width="800" height="400">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_iUZ6zci5EeSYyb2aHOX-nQ">
+      <children xsi:type="advanced:Perspective" xmi:id="_iUZ6zsi5EeSYyb2aHOX-nQ">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_iUZ6z8i5EeSYyb2aHOX-nQ" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_KbRUMMnyEeSWKbUb-NM0-w" elementId="net.springfieldusa.ham.ui.partstack.0" containerData="10000">
+            <children xsi:type="basic:Part" xmi:id="_ZrPeUMnyEeSWKbUb-NM0-w" elementId="net.springfieldusa.ham.ui.part.radios" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.parts.RadioView" label="Radios"/>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_iUZ60Mi5EeSYyb2aHOX-nQ" elementId="net.springfieldusa.ham.ui.partstack.1" containerData="60000">
+            <children xsi:type="basic:Part" xmi:id="_iUZ60ci5EeSYyb2aHOX-nQ" elementId="net.springfieldusa.ham.ui.channels" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.parts.ChannelView" label="Channels"/>
+          </children>
+        </children>
+      </children>
+    </children>
+    <mainMenu xmi:id="_iUZ6xsi5EeSYyb2aHOX-nQ" elementId="menu:org.eclipse.ui.main.menu">
+      <children xsi:type="menu:Menu" xmi:id="_iUZ6x8i5EeSYyb2aHOX-nQ" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_iUZ6ysi5EeSYyb2aHOX-nQ" label="Quit" command="_iUZTvMi5EeSYyb2aHOX-nQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_u2KOINTNEeSaGN0MzSIcOw" elementId="net.springfieldusa.ham.ui.handledmenuitem.importFromRadio" label="Import From Radio" command="_73nkkMjgEeSVNuTGRRR4Eg"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_iUZ6y8i5EeSYyb2aHOX-nQ" label="Help">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_iUZ6zMi5EeSYyb2aHOX-nQ" label="About" command="_iUZ6w8i5EeSYyb2aHOX-nQ"/>
+      </children>
+    </mainMenu>
+    <trimBars xmi:id="_iUZ60si5EeSYyb2aHOX-nQ">
+      <children xsi:type="menu:ToolBar" xmi:id="_iUZ608i5EeSYyb2aHOX-nQ" elementId="toolbar:org.eclipse.ui.main.toolbar">
+        <children xsi:type="menu:HandledToolItem" xmi:id="_iUZ61Mi5EeSYyb2aHOX-nQ" elementId="id.download" label="Download" iconURI="platform:/plugin/net.springfieldusa.ham.ui/icons/sample.png" command="_73nkkMjgEeSVNuTGRRR4Eg"/>
+      </children>
+    </trimBars>
+  </children>
+  <handlers xmi:id="_iUZTvci5EeSYyb2aHOX-nQ" elementId="net.springfieldusa.ham.ui.handler.quitCommand" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.handlers.QuitHandler" command="_iUZTvMi5EeSYyb2aHOX-nQ"/>
+  <handlers xmi:id="_iUZ6xMi5EeSYyb2aHOX-nQ" elementId="net.springfieldusa.ham.ui.handler.aboutCommand" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.handlers.AboutHandler" command="_iUZ6w8i5EeSYyb2aHOX-nQ"/>
+  <handlers xmi:id="_S36QYMjhEeSVNuTGRRR4Eg" elementId="net.springfieldusa.ham.ui.handler.0" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.handlers.DownloadHandler" command="_73nkkMjgEeSVNuTGRRR4Eg"/>
+  <bindingTables xmi:id="_iUZTvsi5EeSYyb2aHOX-nQ" bindingContext="_iUZTuci5EeSYyb2aHOX-nQ">
+    <bindings xmi:id="_iUZTv8i5EeSYyb2aHOX-nQ" keySequence="M1+Q" command="_iUZTvMi5EeSYyb2aHOX-nQ"/>
+    <bindings xmi:id="_iUZTwsi5EeSYyb2aHOX-nQ" keySequence="M1+O"/>
+    <bindings xmi:id="_iUZ6wsi5EeSYyb2aHOX-nQ" keySequence="M1+S"/>
+    <bindings xmi:id="_iUZ6xci5EeSYyb2aHOX-nQ" keySequence="M1+A" command="_iUZ6w8i5EeSYyb2aHOX-nQ"/>
+  </bindingTables>
+  <rootContext xmi:id="_iUZTuci5EeSYyb2aHOX-nQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
+    <children xmi:id="_iUZTusi5EeSYyb2aHOX-nQ" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
+    <children xmi:id="_iUZTu8i5EeSYyb2aHOX-nQ" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
+  </rootContext>
+  <commands xmi:id="_iUZTvMi5EeSYyb2aHOX-nQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
+  <commands xmi:id="_iUZ6w8i5EeSYyb2aHOX-nQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="_73nkkMjgEeSVNuTGRRR4Eg" elementId="net.springfieldusa.ham.ui.command.importFromRadio" commandName="importFromRadio" description="Import the current radio channel programming"/>
+  <addons xmi:id="_iUZTssi5EeSYyb2aHOX-nQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_iUZTs8i5EeSYyb2aHOX-nQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_iUZTtMi5EeSYyb2aHOX-nQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_iUZTtci5EeSYyb2aHOX-nQ" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_iUZTtsi5EeSYyb2aHOX-nQ" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+  <addons xmi:id="_iUZTt8i5EeSYyb2aHOX-nQ" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_iUZTuMi5EeSYyb2aHOX-nQ" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+</application:Application>

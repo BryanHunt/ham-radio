@@ -65,6 +65,16 @@ public class ChannelView
     columnViewer.getColumn().setWidth(60);
     columnViewer.setLabelProvider(new ObservableMapCellLabelProvider(map));
 
+    // Name
+    
+    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__BASE_CHANNEL, RadioPackage.Literals.RADIO_CHANNEL__CHANNEL_NAME);
+    map = EMFProperties.value(path).observeDetail(contentProvider.getKnownElements());
+
+    columnViewer = new TableViewerColumn(tableViewer, SWT.NONE);
+    columnViewer.getColumn().setText("Name");
+    columnViewer.getColumn().setWidth(100);
+    columnViewer.setLabelProvider(new ObservableMapCellLabelProvider(map));
+    
     // Receive Frequency
 
     path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__BASE_CHANNEL, RadioPackage.Literals.RADIO_CHANNEL__RECEIVE_FREQUENCY,

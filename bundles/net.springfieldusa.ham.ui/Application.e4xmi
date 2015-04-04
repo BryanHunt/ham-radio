@@ -30,7 +30,7 @@
   </children>
   <handlers xmi:id="_iUZTvci5EeSYyb2aHOX-nQ" elementId="net.springfieldusa.ham.ui.handler.quitCommand" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.handlers.QuitHandler" command="_iUZTvMi5EeSYyb2aHOX-nQ"/>
   <handlers xmi:id="_iUZ6xMi5EeSYyb2aHOX-nQ" elementId="net.springfieldusa.ham.ui.handler.aboutCommand" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.handlers.AboutHandler" command="_iUZ6w8i5EeSYyb2aHOX-nQ"/>
-  <handlers xmi:id="_S36QYMjhEeSVNuTGRRR4Eg" elementId="net.springfieldusa.ham.ui.handler.0" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.handlers.DownloadHandler" command="_73nkkMjgEeSVNuTGRRR4Eg"/>
+  <handlers xmi:id="_S36QYMjhEeSVNuTGRRR4Eg" elementId="net.springfieldusa.ham.ui.handler.0" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.handlers.ImportFromRadioHandler" command="_73nkkMjgEeSVNuTGRRR4Eg"/>
   <bindingTables xmi:id="_iUZTvsi5EeSYyb2aHOX-nQ" bindingContext="_iUZTuci5EeSYyb2aHOX-nQ">
     <bindings xmi:id="_iUZTv8i5EeSYyb2aHOX-nQ" keySequence="M1+Q" command="_iUZTvMi5EeSYyb2aHOX-nQ"/>
     <bindings xmi:id="_iUZTwsi5EeSYyb2aHOX-nQ" keySequence="M1+O"/>

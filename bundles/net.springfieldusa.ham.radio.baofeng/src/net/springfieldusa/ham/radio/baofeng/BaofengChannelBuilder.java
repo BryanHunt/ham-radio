@@ -76,8 +76,8 @@ public class BaofengChannelBuilder
     {
       byte value = segment.getContents()[offset + i];
 
-      if (value != 0xff)
-        channelName.append(value);
+      if (value != (byte) 0xff)
+        channelName.append((char) value);
     }
 
     return channelName.toString();

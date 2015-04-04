@@ -1,16 +1,10 @@
 package net.springfieldusa.ham.ui.dialogs;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -19,20 +13,26 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-import net.springfieldusa.ham.radio.RadioManufacturer;
 import net.springfieldusa.ham.radio.RadioModel;
+import net.springfieldusa.ham.radio.RadioRegistry;
 import net.springfieldusa.ham.radio.RadioType;
+import net.springfieldusa.ham.ui.widgets.RadioManufacturSelector;
+import net.springfieldusa.ham.ui.widgets.RadioModelSelector;
+import net.springfieldusa.ham.ui.widgets.SerialPortSelector;
+import net.springfieldusa.io.serial.SerialPortService;
 
 public class ImportFromRadioDialog extends Dialog
 {
-  private Collection<RadioManufacturer> radios;
+  private RadioRegistry radioRegistry;
   private RadioType selectedType;
   private String selectedPort;
-
-  public ImportFromRadioDialog(Shell parentShell, Collection<RadioManufacturer> radios)
+  private SerialPortService serialPortService;
+  
+  public ImportFromRadioDialog(Shell parentShell, RadioRegistry radioRegistry, SerialPortService serialPortService)
   {
     super(parentShell);
-    this.radios = radios;
+    this.radioRegistry = radioRegistry;
+    this.serialPortService = serialPortService;
   }
 
   public URI getURI()
@@ -43,8 +43,6 @@ public class ImportFromRadioDialog extends Dialog
   @Override
   protected Control createDialogArea(Composite parent)
   {
-    // TODO: Use data bindings
-    
     Composite container = (Composite) super.createDialogArea(parent);
     GridLayout layout = new GridLayout(2, false);
     container.setLayout(layout);
@@ -52,45 +50,14 @@ public class ImportFromRadioDialog extends Dialog
     Label label = new Label(container, SWT.NONE);
     label.setText("Manufacturer:");
 
-    ComboViewer manufacturer = new ComboViewer(container, SWT.READ_ONLY);
+    RadioManufacturSelector manufacturer = new RadioManufacturSelector(container, SWT.READ_ONLY, radioRegistry);
     manufacturer.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-    manufacturer.setContentProvider(new ArrayContentProvider());
-    manufacturer.setLabelProvider(new LabelProvider()
-    {
-      @Override
-      public String getText(Object element)
-      {
-        RadioManufacturer manufacturer = (RadioManufacturer) element;
-        return manufacturer.getName();
-      }
-    });
     
     label = new Label(container, SWT.NONE);
     label.setText("Model:");
     
-    ComboViewer model = new ComboViewer(container, SWT.READ_ONLY);
+    RadioModelSelector model = new RadioModelSelector(container, SWT.READ_ONLY, manufacturer);
     model.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-    model.setContentProvider(new ArrayContentProvider());
-    model.setLabelProvider(new LabelProvider()
-    {
-      @Override
-      public String getText(Object element)
-      {
-        RadioModel model = (RadioModel) element;
-        return model.getName();
-      }
-    });
-    
-    manufacturer.addSelectionChangedListener(new ISelectionChangedListener()
-    {
-      @Override
-      public void selectionChanged(SelectionChangedEvent event)
-      {
-        RadioManufacturer selectedManufacturer = (RadioManufacturer) ((IStructuredSelection)manufacturer.getSelection()).getFirstElement();
-        model.setInput(selectedManufacturer.getModels());
-        model.setSelection(new StructuredSelection(selectedManufacturer.getModels().get(0)));
-      }
-    });
     
     model.addSelectionChangedListener(new ISelectionChangedListener()
     {
@@ -101,30 +68,25 @@ public class ImportFromRadioDialog extends Dialog
         selectedType = selectedModel.getType();
       }
     });
-    
-    manufacturer.setInput(radios);
-    manufacturer.setSelection(new StructuredSelection(radios.iterator().next()));
-    
+
     label = new Label(container, SWT.NONE);
     label.setText("Port:");
     
-    String serialPort = "/dev/cu.usbserial";
+    SerialPortSelector portSelector = new SerialPortSelector(container, SWT.READ_ONLY, serialPortService);
+    portSelector.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-    ComboViewer port = new ComboViewer(container, SWT.READ_ONLY);
-    port.getCombo().setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-    port.add(serialPort);
-    
-    port.addSelectionChangedListener(new ISelectionChangedListener()
+    portSelector.addSelectionChangedListener(new ISelectionChangedListener()
     {
       @Override
       public void selectionChanged(SelectionChangedEvent event)
       {
-        selectedPort = (String) ((IStructuredSelection) port.getSelection()).getFirstElement();
+        selectedPort = (String) ((IStructuredSelection) portSelector.getSelection()).getFirstElement();
       }
     });
     
-    port.setSelection(new StructuredSelection(serialPort));
-    
+    manufacturer.refresh();
+    portSelector.refresh();
+
     return container;
   }
 }

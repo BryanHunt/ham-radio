@@ -97,7 +97,7 @@ class ProgrammedRadioChannel
 
 enum Tone
 {
-	NONE as "NONE" = 0
+	NONE as "None" = 0
 
 	D023 as "023" = 1
   D025 as "025" = 2

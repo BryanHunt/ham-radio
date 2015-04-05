@@ -21,7 +21,7 @@ import net.springfieldusa.ham.radio.Radio;
 import net.springfieldusa.ham.radio.RadioRegistry;
 import net.springfieldusa.ham.radio.program.TransferProgressMonitor;
 import net.springfieldusa.ham.ui.dialogs.ImportFromRadioDialog;
-import net.springfieldusa.ham.ui.parts.ChannelView;
+import net.springfieldusa.ham.ui.parts.ChannelsView;
 import net.springfieldusa.io.serial.SerialPortService;
 
 public class ImportFromRadioHandler
@@ -31,7 +31,7 @@ public class ImportFromRadioHandler
   {
     MPart part = partService.findPart("net.springfieldusa.ham.ui.channels");
     part.setLabel("UV-5RE");
-    ChannelView view = (ChannelView) part.getObject();
+    ChannelsView view = (ChannelsView) part.getObject();
 
     ImportFromRadioDialog dialog = new ImportFromRadioDialog(currentShell, radioRegistry, serialPortService);
     

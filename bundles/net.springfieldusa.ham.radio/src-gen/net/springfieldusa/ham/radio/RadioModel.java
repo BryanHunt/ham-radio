@@ -22,17 +22,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Model</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Model</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link net.springfieldusa.ham.radio.RadioModel#getName <em>Name</em>}
- * </li>
- * <li>{@link net.springfieldusa.ham.radio.RadioModel#getType <em>Type</em>}
- * </li>
+ *   <li>{@link net.springfieldusa.ham.radio.RadioModel#getName <em>Name</em>}</li>
+ *   <li>{@link net.springfieldusa.ham.radio.RadioModel#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see net.springfieldusa.ham.radio.RadioPackage#getRadioModel()
@@ -42,9 +41,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class RadioModel extends MinimalEObjectImpl.Container implements EObject
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
@@ -52,9 +51,9 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
@@ -62,9 +61,9 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
@@ -72,8 +71,8 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   protected RadioType type;
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   protected RadioModel()
@@ -82,8 +81,8 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -93,14 +92,13 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   }
 
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear, there really
-   * should be more of a description here...
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
    * @see net.springfieldusa.ham.radio.RadioPackage#getRadioModel_Name()
@@ -113,12 +111,10 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   }
 
   /**
-   * Sets the value of the '
-   * {@link net.springfieldusa.ham.radio.RadioModel#getName <em>Name</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Name</em>' attribute.
+   * Sets the value of the '{@link net.springfieldusa.ham.radio.RadioModel#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
    * @see #getName()
    * @generated
    */
@@ -131,14 +127,13 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   }
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' reference. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear, there really
-   * should be more of a description here...
+   * If the meaning of the '<em>Type</em>' reference isn't clear,
+   * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Type</em>' reference.
    * @see #setType(RadioType)
    * @see net.springfieldusa.ham.radio.RadioPackage#getRadioModel_Type()
@@ -149,8 +144,8 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   {
     if (type != null && type.eIsProxy())
     {
-      InternalEObject oldType = (InternalEObject) type;
-      type = (RadioType) eResolveProxy(oldType);
+      InternalEObject oldType = (InternalEObject)type;
+      type = (RadioType)eResolveProxy(oldType);
       if (type != oldType)
       {
         if (eNotificationRequired())
@@ -161,8 +156,8 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public RadioType basicGetType()
@@ -171,12 +166,10 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   }
 
   /**
-   * Sets the value of the '
-   * {@link net.springfieldusa.ham.radio.RadioModel#getType <em>Type</em>}'
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Type</em>' reference.
+   * Sets the value of the '{@link net.springfieldusa.ham.radio.RadioModel#getType <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' reference.
    * @see #getType()
    * @generated
    */
@@ -189,8 +182,8 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -201,16 +194,15 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
       case RadioPackage.RADIO_MODEL__NAME:
         return getName();
       case RadioPackage.RADIO_MODEL__TYPE:
-        if (resolve)
-          return getType();
+        if (resolve) return getType();
         return basicGetType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -219,18 +211,18 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
     switch (featureID)
     {
       case RadioPackage.RADIO_MODEL__NAME:
-        setName((String) newValue);
+        setName((String)newValue);
         return;
       case RadioPackage.RADIO_MODEL__TYPE:
-        setType((RadioType) newValue);
+        setType((RadioType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -242,15 +234,15 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
         setName(NAME_EDEFAULT);
         return;
       case RadioPackage.RADIO_MODEL__TYPE:
-        setType((RadioType) null);
+        setType((RadioType)null);
         return;
     }
     super.eUnset(featureID);
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -267,15 +259,14 @@ public class RadioModel extends MinimalEObjectImpl.Container implements EObject
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public String toString()
   {
-    if (eIsProxy())
-      return super.toString();
+    if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");

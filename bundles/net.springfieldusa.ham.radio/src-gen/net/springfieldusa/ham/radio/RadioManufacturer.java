@@ -30,17 +30,16 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Manufacturer</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Manufacturer</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link net.springfieldusa.ham.radio.RadioManufacturer#getName
- * <em>Name</em>}</li>
- * <li>{@link net.springfieldusa.ham.radio.RadioManufacturer#getModels
- * <em>Models</em>}</li>
+ *   <li>{@link net.springfieldusa.ham.radio.RadioManufacturer#getName <em>Name</em>}</li>
+ *   <li>{@link net.springfieldusa.ham.radio.RadioManufacturer#getModels <em>Models</em>}</li>
  * </ul>
  *
  * @see net.springfieldusa.ham.radio.RadioPackage#getRadioManufacturer()
@@ -50,9 +49,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class RadioManufacturer extends MinimalEObjectImpl.Container implements EObject
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
@@ -60,9 +59,9 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
@@ -70,9 +69,9 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getModels() <em>Models</em>}' containment
-   * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The cached value of the '{@link #getModels() <em>Models</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @see #getModels()
    * @generated
    * @ordered
@@ -80,8 +79,8 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   protected EList<RadioModel> models;
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   protected RadioManufacturer()
@@ -90,8 +89,8 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -101,14 +100,13 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   }
 
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
-   * begin-user-doc -->
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear, there really
-   * should be more of a description here...
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
    * @see net.springfieldusa.ham.radio.RadioPackage#getRadioManufacturer_Name()
@@ -121,12 +119,10 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   }
 
   /**
-   * Sets the value of the '
-   * {@link net.springfieldusa.ham.radio.RadioManufacturer#getName <em>Name</em>
-   * }' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Name</em>' attribute.
+   * Sets the value of the '{@link net.springfieldusa.ham.radio.RadioManufacturer#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
    * @see #getName()
    * @generated
    */
@@ -139,15 +135,14 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   }
 
   /**
-   * Returns the value of the '<em><b>Models</b></em>' containment reference
-   * list. The list contents are of type
-   * {@link net.springfieldusa.ham.radio.RadioModel}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Models</b></em>' containment reference list.
+   * The list contents are of type {@link net.springfieldusa.ham.radio.RadioModel}.
+   * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Models</em>' containment reference list isn't
-   * clear, there really should be more of a description here...
+   * If the meaning of the '<em>Models</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Models</em>' containment reference list.
    * @see net.springfieldusa.ham.radio.RadioPackage#getRadioManufacturer_Models()
    * @model containment="true"
@@ -163,8 +158,8 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -173,14 +168,14 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
     switch (featureID)
     {
       case RadioPackage.RADIO_MANUFACTURER__MODELS:
-        return ((InternalEList<?>) getModels()).basicRemove(otherEnd, msgs);
+        return ((InternalEList<?>)getModels()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -197,8 +192,8 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -208,19 +203,19 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
     switch (featureID)
     {
       case RadioPackage.RADIO_MANUFACTURER__NAME:
-        setName((String) newValue);
+        setName((String)newValue);
         return;
       case RadioPackage.RADIO_MANUFACTURER__MODELS:
         getModels().clear();
-        getModels().addAll((Collection<? extends RadioModel>) newValue);
+        getModels().addAll((Collection<? extends RadioModel>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -239,8 +234,8 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -257,15 +252,14 @@ public class RadioManufacturer extends MinimalEObjectImpl.Container implements E
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public String toString()
   {
-    if (eIsProxy())
-      return super.toString();
+    if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_iUZTsMi5EeSYyb2aHOX-nQ" elementId="org.eclipse.e4.ide.application" bindingContexts="_iUZTuci5EeSYyb2aHOX-nQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_iUZTsci5EeSYyb2aHOX-nQ" label="net.springfieldusa.ham.ui" width="800" height="400">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_iUZTsci5EeSYyb2aHOX-nQ" label="net.springfieldusa.ham.ui" width="1024" height="600">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_iUZ6zci5EeSYyb2aHOX-nQ">
       <children xsi:type="advanced:Perspective" xmi:id="_iUZ6zsi5EeSYyb2aHOX-nQ">
         <children xsi:type="basic:PartSashContainer" xmi:id="_iUZ6z8i5EeSYyb2aHOX-nQ" horizontal="true">
@@ -8,7 +8,10 @@
             <children xsi:type="basic:Part" xmi:id="_ZrPeUMnyEeSWKbUb-NM0-w" elementId="net.springfieldusa.ham.ui.part.radios" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.parts.RadioView" label="Radios"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_iUZ60Mi5EeSYyb2aHOX-nQ" elementId="net.springfieldusa.ham.ui.partstack.1" containerData="60000">
-            <children xsi:type="basic:Part" xmi:id="_iUZ60ci5EeSYyb2aHOX-nQ" elementId="net.springfieldusa.ham.ui.channels" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.parts.ChannelView" label="Channels"/>
+            <children xsi:type="basic:Part" xmi:id="_iUZ60ci5EeSYyb2aHOX-nQ" elementId="net.springfieldusa.ham.ui.channels" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.parts.ChannelsView" label="Channels"/>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_VUakENpxEeSmFqObtwLhTA" elementId="net.springfieldusa.ham.ui.partstack.2" containerData="20000">
+            <children xsi:type="basic:Part" xmi:id="_YoJlsNpxEeSmFqObtwLhTA" elementId="net.springfieldusa.ham.ui.part.channel" contributionURI="bundleclass://net.springfieldusa.ham.ui/net.springfieldusa.ham.ui.parts.ChannelView" label="Channel"/>
           </children>
         </children>
       </children>

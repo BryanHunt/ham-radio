@@ -35,6 +35,11 @@ public class ImportFromRadioDialog extends Dialog
     this.serialPortService = serialPortService;
   }
 
+  public RadioType getRadioType()
+  {
+    return selectedType;
+  }
+  
   public URI getURI()
   {
     return URI.createURI(selectedType.getProgrammingScheme() + "://" + selectedPort);

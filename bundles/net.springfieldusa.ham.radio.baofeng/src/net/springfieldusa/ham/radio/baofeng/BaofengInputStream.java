@@ -21,8 +21,11 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 
 import net.springfieldusa.ham.radio.Radio;
 import net.springfieldusa.ham.radio.RadioFactory;
-import net.springfieldusa.ham.radio.program.MemorySegment;
-import net.springfieldusa.ham.radio.program.TransferProgressMonitor;
+import net.springfieldusa.ham.radio.RadioMemory;
+import net.springfieldusa.ham.radio.RadioMemoryBlock;
+import net.springfieldusa.ham.radio.RadioMemorySegment;
+import net.springfieldusa.ham.radio.RadioType;
+import net.springfieldusa.ham.radio.TransferProgressMonitor;
 import net.springfieldusa.io.serial.BaudRate;
 import net.springfieldusa.io.serial.DataBits;
 import net.springfieldusa.io.serial.FlowControl;
@@ -32,20 +35,24 @@ import net.springfieldusa.io.serial.StopBits;
 
 public class BaofengInputStream extends InputStream implements URIConverter.Loadable
 {
+  public static final int MEMORY_SEGMENT_SIZE = 0x40;
+
   private TransferProgressMonitor progressMonitor;
+  private RadioType radioType;
   private IOStream stream;
 
-  public BaofengInputStream(TransferProgressMonitor progressMonitor) throws IOException
+  public BaofengInputStream(TransferProgressMonitor progressMonitor, RadioType radioType) throws IOException
   {
     this.progressMonitor = progressMonitor;
+    this.radioType = radioType;
   }
 
   @Override
   public void loadResource(Resource resource) throws IOException
   {
-    int totalWork = 0x1800 / BaofengMemory.MEMORY_SEGMENT_SIZE + (0x2000 - 0x1EC0) / BaofengMemory.MEMORY_SEGMENT_SIZE + 2;
+    int totalWork = 0x1800 / MEMORY_SEGMENT_SIZE + (0x2000 - 0x1EC0) / MEMORY_SEGMENT_SIZE + 2;
     progressMonitor.beginTask("Import from radio", totalWork);
-    BaofengMemory memory = new BaofengMemory();
+    RadioMemory memory = RadioFactory.eINSTANCE.createRadioMemory();
 
     progressMonitor.subTask("Connecting to radio");
 
@@ -58,12 +65,12 @@ public class BaofengInputStream extends InputStream implements URIConverter.Load
       InputStream in = stream.createInputStream();
 
       out.write(0x02);
-      Thread.sleep(100);
+      Thread.sleep(radioType.getImportDelays().get(BaofengRadioService.DELAY_IDENTIFIER));
       byte[] identifier = new byte[8];
       in.read(identifier);
 
       out.write(0x06);
-      Thread.sleep(100);
+      Thread.sleep(radioType.getImportDelays().get(BaofengRadioService.DELAY_CLONE));
       byte response = (byte) in.read();
 
       if (response != 0x06)
@@ -75,18 +82,30 @@ public class BaofengInputStream extends InputStream implements URIConverter.Load
       progressMonitor.worked(1);
       progressMonitor.subTask("Downloading memory");
 
-      for (int address = 0; address < 0x1800; address += BaofengMemory.MEMORY_SEGMENT_SIZE)
+      RadioMemoryBlock channelBlock = RadioFactory.eINSTANCE.createRadioMemoryBlock();
+      channelBlock.setStartAddress(0x0);
+      channelBlock.setEndAddress(0x1800 - 1);
+      channelBlock.setSegmentSize(MEMORY_SEGMENT_SIZE);
+      memory.getBlocks().add(channelBlock);
+      
+      for (int address = 0; address < 0x1800; address += MEMORY_SEGMENT_SIZE)
       {
-        memory.addSegment(createSegment(stream, address));
+        channelBlock.getSegments().add(createSegment(stream, address));
         progressMonitor.worked(1);
 
         if (progressMonitor.isCanceled())
           return;
       }
 
-      for (int address = 0x1EC0; address < 0x2000; address += BaofengMemory.MEMORY_SEGMENT_SIZE)
+      RadioMemoryBlock settingsBlock = RadioFactory.eINSTANCE.createRadioMemoryBlock();
+      settingsBlock.setStartAddress(0x1EC0);
+      settingsBlock.setEndAddress(0x2000 - 1);
+      settingsBlock.setSegmentSize(MEMORY_SEGMENT_SIZE);
+      memory.getBlocks().add(settingsBlock);
+
+      for (int address = 0x1EC0; address < 0x2000; address += MEMORY_SEGMENT_SIZE)
       {
-        memory.addSegment(createSegment(stream, address));
+        settingsBlock.getSegments().add(createSegment(stream, address));
         progressMonitor.worked(1);
 
         if (progressMonitor.isCanceled())
@@ -95,14 +114,15 @@ public class BaofengInputStream extends InputStream implements URIConverter.Load
 
       progressMonitor.subTask("Processing memory");
       Radio radio = RadioFactory.eINSTANCE.createRadio();
+      radio.setMemoryImage(memory);
 
       for (int i = 0; i < 128; i++)
       {
         int channelAddress = BaofengChannelBuilder.getChannelAddress(i);
-        MemorySegment channelSegment = memory.getSegment(channelAddress);
+        RadioMemorySegment channelSegment = channelBlock.findSegment(channelAddress);
         int channelOffset = channelAddress - channelSegment.getStartAddress();
 
-        if (channelSegment.getContents()[channelOffset] != (byte) 0xff)
+        if (channelSegment.getContents().get(channelOffset) != (byte) 0xff)
           radio.getChannels().add(BaofengChannelBuilder.buildChannel(i, memory));
       }
 
@@ -132,7 +152,7 @@ public class BaofengInputStream extends InputStream implements URIConverter.Load
     return 0;
   }
 
-  private IOStream connect(String device) throws IOException
+  private IOStream connect(String device) throws IOException, InterruptedException
   {
     if (device == null || device.isEmpty())
       throw new IOException("Serial device not specified");
@@ -147,14 +167,7 @@ public class BaofengInputStream extends InputStream implements URIConverter.Load
     stream.setUseFlowControl(FlowControl.NO);
     stream.setReadMode(1, 10);
 
-    try
-    {
-      Thread.sleep(100);
-    }
-    catch (InterruptedException e)
-    {
-      throw new IOException("Interrupted while attempting to connect");
-    }
+    Thread.sleep(radioType.getImportDelays().get(BaofengRadioService.DELAY_CONNECT));
 
     OutputStream out = stream.createOuputStream();
     InputStream in = stream.createInputStream();
@@ -163,14 +176,7 @@ public class BaofengInputStream extends InputStream implements URIConverter.Load
 
     out.write(magicNumber);
 
-    try
-    {
-      Thread.sleep(200);
-    }
-    catch (InterruptedException e)
-    {
-      throw new IOException("Interrupted while attempting to connect");
-    }
+    Thread.sleep(radioType.getImportDelays().get(BaofengRadioService.DELAY_MAGIC_NUMBER));
 
     // System.out.println("Reading response");
 
@@ -184,14 +190,16 @@ public class BaofengInputStream extends InputStream implements URIConverter.Load
     return stream;
   }
 
-  private MemorySegment createSegment(IOStream stream, int address) throws IOException, InterruptedException
+  private RadioMemorySegment createSegment(IOStream stream, int address) throws IOException, InterruptedException
   {
-    MemorySegment segment = new MemorySegment(address, BaofengMemory.MEMORY_SEGMENT_SIZE);
+    RadioMemorySegment segment = RadioFactory.eINSTANCE.createRadioMemorySegment();
+    segment.setStartAddress(address);
+    segment.setSegmentSize(MEMORY_SEGMENT_SIZE);
 
     InputStream in = stream.createInputStream();
     OutputStream out = stream.createOuputStream();
 
-    byte[] command = new byte[] { 'S', (byte) (segment.getStartAddress() >> 8), (byte) segment.getStartAddress(), (byte) segment.getSize() };
+    byte[] command = new byte[] { 'S', (byte) (segment.getStartAddress() >> 8), (byte) segment.getStartAddress(), (byte) MEMORY_SEGMENT_SIZE };
     out.write(command);
     Thread.sleep(50);
 
@@ -201,9 +209,12 @@ public class BaofengInputStream extends InputStream implements URIConverter.Load
     if (reply[0] != 'X')
       throw new IOException("Radio did not respond with memory segment");
 
-//    Thread.sleep(60);
-    Thread.sleep(100);
-    segment.loadFrom(in);
+    Thread.sleep(radioType.getImportDelays().get(BaofengRadioService.DELAY_READ));
+    byte[] data = new byte[MEMORY_SEGMENT_SIZE];
+    in.read(data);
+    
+    for(byte element : data)
+    segment.getContents().add(element);
 
     out.write(0x06);
     byte ack = (byte) in.read();

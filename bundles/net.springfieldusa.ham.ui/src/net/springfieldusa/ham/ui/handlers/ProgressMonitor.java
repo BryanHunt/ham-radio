@@ -1,8 +1,8 @@
 package net.springfieldusa.ham.ui.handlers;
 
-import net.springfieldusa.ham.radio.program.TransferProgressMonitor;
-
 import org.eclipse.core.runtime.IProgressMonitor;
+
+import net.springfieldusa.ham.radio.TransferProgressMonitor;
 
 public class ProgressMonitor implements TransferProgressMonitor
 {

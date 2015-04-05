@@ -8,7 +8,6 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: net.springfieldusa.ham.radio,
- net.springfieldusa.ham.radio.program,
  net.springfieldusa.ham.radio.util,
  net.springfieldusa.ham.units,
  net.springfieldusa.ham.units.util

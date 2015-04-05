@@ -5,6 +5,12 @@ package net.springfieldusa.ham.radio
 import net.springfieldusa.ham.units.UnitValue
 import net.springfieldusa.ham.units.UnitOfMeasure
 
+class DelayMapEntry wraps java.util.Map.Entry
+{
+	String key
+	Integer value
+}
+
 class OperatingFrequency extends UnitValue<Long>
 {
 	op double scaleValue(Long value, UnitOfMeasure units)
@@ -33,6 +39,7 @@ class Radio
 {
 	String name
 	refers RadioType ^type
+	contains RadioMemory memoryImage
 	contains ProgrammedRadioSetting[] settings
 	contains ProgrammedRadioChannel[] channels
 }
@@ -56,6 +63,44 @@ class RadioBand
 	contains OperatingFrequency maxFrequency
 }
 
+class RadioMemorySegment
+{
+	int startAddress
+	int segmentSize
+	byte[] contents
+}
+
+class RadioMemoryBlock
+{
+	int startAddress
+	int endAddress
+	int segmentSize
+	
+	contains RadioMemorySegment[] segments
+	
+	op RadioMemorySegment findSegment(int address)
+	{
+		var int segmentIndex = (address - startAddress) / segmentSize;
+		return segments.get(segmentIndex);
+	}
+}
+
+class RadioMemory
+{
+	contains RadioMemoryBlock[] blocks
+	
+	op RadioMemorySegment findSegment(int address)
+	{
+		for(RadioMemoryBlock block : blocks)
+		{
+			if(block.startAddress <= address && block.endAddress > address)
+				return block.findSegment(address);
+		}
+		
+		return null;
+	}
+}
+
 class RadioType
 {
 	String manufacturer
@@ -64,6 +109,8 @@ class RadioType
 	int minChannelNumber
 	int maxChannelNumber
 	refers RadioBand[] bands
+	contains DelayMapEntry[] importDelays
+	contains DelayMapEntry[] exportDelays
 }
 
 class RadioSetting

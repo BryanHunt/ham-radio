@@ -16,5 +16,6 @@ import java.util.Collection;
 
 public interface RadioService
 {
+  String OPTION_RADIO_TYPE = "type";
   Collection<RadioType> getSupportedRadios();
 }

@@ -18,10 +18,10 @@ import net.springfieldusa.ham.radio.OperatingFrequency;
 import net.springfieldusa.ham.radio.ProgrammedRadioChannel;
 import net.springfieldusa.ham.radio.RadioChannel;
 import net.springfieldusa.ham.radio.RadioFactory;
+import net.springfieldusa.ham.radio.RadioMemory;
+import net.springfieldusa.ham.radio.RadioMemorySegment;
 import net.springfieldusa.ham.radio.Tone;
 import net.springfieldusa.ham.radio.TransmitPower;
-import net.springfieldusa.ham.radio.program.MemorySegment;
-import net.springfieldusa.ham.radio.program.RadioMemory;
 import net.springfieldusa.ham.units.FrequencyUnit;
 import net.springfieldusa.ham.units.PowerUnit;
 
@@ -45,12 +45,12 @@ public class BaofengChannelBuilder
       throw new IOException("Invalid channel number");
 
     int channelAddress = getChannelAddress(channelNumber);
-    MemorySegment channelSegment = memory.getSegment(channelAddress);
+    RadioMemorySegment channelSegment = memory.findSegment(channelAddress);
     int channelOffset = channelAddress - channelSegment.getStartAddress();
 
     ProgrammedRadioChannel programmedChannel = RadioFactory.eINSTANCE.createProgrammedRadioChannel();
     programmedChannel.setChannelNumber(channelNumber);
-    programmedChannel.setPower(decodePower(channelSegment.getContents()[channelOffset + POWER_OFFSET]));
+    programmedChannel.setPower(decodePower(channelSegment.getContents().get(channelOffset + POWER_OFFSET)));
 
     RadioChannel channel = RadioFactory.eINSTANCE.createRadioChannel();
     programmedChannel.setBaseChannel(channel);
@@ -67,14 +67,14 @@ public class BaofengChannelBuilder
   private static String decodeChannelName(int channelAddress, RadioMemory memory)
   {
     int channelNameAddress = 0x1000 + channelAddress;
-    MemorySegment segment = memory.getSegment(channelNameAddress);
+    RadioMemorySegment segment = memory.findSegment(channelNameAddress);
     int offset = channelNameAddress - segment.getStartAddress();
 
     StringBuilder channelName = new StringBuilder();
 
     for (int i = 0; i < 7; i++)
     {
-      byte value = segment.getContents()[offset + i];
+      byte value = segment.getContents().get(offset + i);
 
       if (value != (byte) 0xff)
         channelName.append((char) value);
@@ -83,24 +83,24 @@ public class BaofengChannelBuilder
     return channelName.toString();
   }
 
-  private static OperatingFrequency decodeFrequency(MemorySegment channelSegment, int channelOffset, int valueOffset)
+  private static OperatingFrequency decodeFrequency(RadioMemorySegment channelSegment, int channelOffset, int valueOffset)
   {
     long frequency = 0;
     byte value;
 
-    value = channelSegment.getContents()[channelOffset + valueOffset];
+    value = channelSegment.getContents().get(channelOffset + valueOffset);
     frequency += ((value >> 4) & 0xf) * 100;
     frequency += (value & 0xf) * 10;
 
-    value = channelSegment.getContents()[channelOffset + valueOffset + 1];
+    value = channelSegment.getContents().get(channelOffset + valueOffset + 1);
     frequency += ((value >> 4) & 0xf) * 10000;
     frequency += (value & 0xf) * 1000;
 
-    value = channelSegment.getContents()[channelOffset + valueOffset + 2];
+    value = channelSegment.getContents().get(channelOffset + valueOffset + 2);
     frequency += ((value >> 4) & 0xf) * 1000000;
     frequency += (value & 0xf) * 100000;
 
-    value = channelSegment.getContents()[channelOffset + valueOffset + 3];
+    value = channelSegment.getContents().get(channelOffset + valueOffset + 3);
     frequency += ((value >> 4) & 0xf) * 100000000;
     frequency += (value & 0xf) * 10000000;
 
@@ -111,9 +111,9 @@ public class BaofengChannelBuilder
     return operatingFrequency;
   }
 
-  private static Tone decodeTone(MemorySegment channelSegment, int channelOffset, int valueOffset)
+  private static Tone decodeTone(RadioMemorySegment channelSegment, int channelOffset, int valueOffset)
   {
-    int value = (byte) channelSegment.getContents()[channelOffset + valueOffset] & 0xff | (channelSegment.getContents()[channelOffset + valueOffset + 1] << 8);
+    int value = (byte) channelSegment.getContents().get(channelOffset + valueOffset) & 0xff | (channelSegment.getContents().get(channelOffset + valueOffset + 1) << 8);
     return Tone.get(value);
   }
 

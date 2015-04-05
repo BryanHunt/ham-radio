@@ -10,21 +10,21 @@
  *     Bryan Hunt - initial API and implementation
  *******************************************************************************/
 
-package net.springfieldusa.ham.radio.program;
+package net.springfieldusa.ham.radio;
 
-import java.util.List;
-
-public interface RadioMemory
+public interface TransferProgressMonitor
 {
-  boolean isEmpty();
+  String OPTION_PROGRESS_MONITOR = "PROGRESS_MONITOR";
 
-  void clear();
+  void beginTask(String name, int totalWork);
 
-  MemorySegment getSegment(int address);
+  void done();
 
-  List<MemorySegment> getSegments();
+  boolean isCanceled();
 
-  byte[] getContents();
+  void setTaskName(String name);
 
-  void setContents(byte[] contents);
+  void subTask(String name);
+
+  void worked(int work);
 }

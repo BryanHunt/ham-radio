@@ -19,7 +19,8 @@ import org.eclipselabs.emodeling.ResourceSetFactory;
 
 import net.springfieldusa.ham.radio.Radio;
 import net.springfieldusa.ham.radio.RadioRegistry;
-import net.springfieldusa.ham.radio.program.TransferProgressMonitor;
+import net.springfieldusa.ham.radio.RadioService;
+import net.springfieldusa.ham.radio.TransferProgressMonitor;
 import net.springfieldusa.ham.ui.dialogs.ImportFromRadioDialog;
 import net.springfieldusa.ham.ui.parts.ChannelsView;
 import net.springfieldusa.io.serial.SerialPortService;
@@ -47,6 +48,7 @@ public class ImportFromRadioHandler
         {
           ResourceSet resourceSet = resourceSetFactory.createResourceSet();
           resourceSet.getLoadOptions().put(TransferProgressMonitor.OPTION_PROGRESS_MONITOR, new ProgressMonitor(monitor));
+          resourceSet.getLoadOptions().put(RadioService.OPTION_RADIO_TYPE, dialog.getRadioType());
           Resource radioResource = resourceSet.getResource(dialog.getURI(), true);
 
           sync.asyncExec(new Runnable()

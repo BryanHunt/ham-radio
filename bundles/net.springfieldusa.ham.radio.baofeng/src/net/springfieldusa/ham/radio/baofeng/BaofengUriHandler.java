@@ -20,7 +20,9 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.URIHandlerImpl;
 
-import net.springfieldusa.ham.radio.program.TransferProgressMonitor;
+import net.springfieldusa.ham.radio.RadioService;
+import net.springfieldusa.ham.radio.RadioType;
+import net.springfieldusa.ham.radio.TransferProgressMonitor;
 
 public class BaofengUriHandler extends URIHandlerImpl
 {
@@ -40,6 +42,6 @@ public class BaofengUriHandler extends URIHandlerImpl
   @Override
   public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException
   {
-    return new BaofengInputStream((TransferProgressMonitor) options.get(TransferProgressMonitor.OPTION_PROGRESS_MONITOR));
+    return new BaofengInputStream((TransferProgressMonitor) options.get(TransferProgressMonitor.OPTION_PROGRESS_MONITOR), (RadioType) options.get(RadioService.OPTION_RADIO_TYPE));
   }
 }

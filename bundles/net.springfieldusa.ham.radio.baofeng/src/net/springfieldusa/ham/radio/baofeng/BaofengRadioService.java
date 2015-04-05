@@ -21,7 +21,13 @@ import net.springfieldusa.ham.radio.RadioType;
 
 public class BaofengRadioService implements RadioService
 {
-  public static Collection<RadioType> supportedRadios = new ArrayList<>();
+  public static String DELAY_CONNECT = "delay.connect";
+  public static String DELAY_MAGIC_NUMBER = "delay.magic";
+  public static String DELAY_IDENTIFIER = "delay.identifier";
+  public static String DELAY_CLONE = "delay.clone";
+  public static String DELAY_READ = "delay.read";
+  
+  private static Collection<RadioType> supportedRadios = new ArrayList<>();
 
   static
   {
@@ -29,7 +35,12 @@ public class BaofengRadioService implements RadioService
     uv5r.setManufacturer("Baofeng");
     uv5r.setModel("UV-5RE Plus");
     uv5r.setProgrammingScheme("baofeng");
-
+    uv5r.getImportDelays().put(DELAY_CONNECT, 100);
+    uv5r.getImportDelays().put(DELAY_MAGIC_NUMBER, 200);
+    uv5r.getImportDelays().put(DELAY_IDENTIFIER, 100);
+    uv5r.getImportDelays().put(DELAY_CLONE, 100);
+    uv5r.getImportDelays().put(DELAY_READ, 60);
+    
     supportedRadios.add(uv5r);
   }
 

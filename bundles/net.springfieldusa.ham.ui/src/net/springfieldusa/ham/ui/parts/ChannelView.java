@@ -88,36 +88,36 @@ public class ChannelView
       return;
     
     channelNumber.setText(Integer.toString(channel.getChannelNumber()));
-    channelName.setText(channel.getBaseChannel().getChannelName());
-    receiveFrequency.setText(channel.getBaseChannel().getReceiveFrequency().getPreferredDisplay());
-    transmitFrequency.setText(channel.getBaseChannel().getTransmitFrequency().getPreferredDisplay());
+    channelName.setText(channel.getChannelInfo().getChannelName());
+    receiveFrequency.setText(channel.getChannelInfo().getReceiveFrequency().getPreferredDisplay());
+    transmitFrequency.setText(channel.getChannelInfo().getTransmitFrequency().getPreferredDisplay());
     
-    int toneType = channel.getBaseChannel().getReceiveTone().getValue();
+    int toneType = channel.getChannelInfo().getReceiveTone().getValue();
     
     if(toneType > 0 && toneType < 670)
     {
       receiveToneType.setSelection(new StructuredSelection("DTCS"));
-      receiveTone.setSelection(new StructuredSelection(channel.getBaseChannel().getReceiveTone()));
+      receiveTone.setSelection(new StructuredSelection(channel.getChannelInfo().getReceiveTone()));
     }
     else if(toneType > 104)
     {
       receiveToneType.setSelection(new StructuredSelection("CTCSS"));
-      receiveTone.setSelection(new StructuredSelection(channel.getBaseChannel().getReceiveTone()));
+      receiveTone.setSelection(new StructuredSelection(channel.getChannelInfo().getReceiveTone()));
     }
     else
       receiveToneType.setSelection(new StructuredSelection("None"));
       
-    toneType = channel.getBaseChannel().getTransmitTone().getValue();
+    toneType = channel.getChannelInfo().getTransmitTone().getValue();
     
     if(toneType > 0 && toneType < 670)
     {
       transmitToneType.setSelection(new StructuredSelection("DTCS"));
-      transmitTone.setSelection(new StructuredSelection(channel.getBaseChannel().getTransmitTone()));
+      transmitTone.setSelection(new StructuredSelection(channel.getChannelInfo().getTransmitTone()));
     }
     else if(toneType > 104)
     {
       transmitToneType.setSelection(new StructuredSelection("CTCSS"));
-      transmitTone.setSelection(new StructuredSelection(channel.getBaseChannel().getTransmitTone()));
+      transmitTone.setSelection(new StructuredSelection(channel.getChannelInfo().getTransmitTone()));
     }
     else
       transmitToneType.setSelection(new StructuredSelection("None"));

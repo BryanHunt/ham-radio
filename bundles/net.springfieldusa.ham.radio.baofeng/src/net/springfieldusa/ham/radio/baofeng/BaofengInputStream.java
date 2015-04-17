@@ -144,10 +144,8 @@ public class BaofengInputStream extends InputStream implements URIConverter.Load
   public int read() throws IOException
   {
     // InputStream requires that we implement this function. It will never be
-    // called
-    // since this implementation implements URIConverter.Loadable. The
-    // loadResource()
-    // function will be called instead.
+    // called since this implementation implements URIConverter.Loadable. The
+    // loadResource() function will be called instead.
 
     return 0;
   }

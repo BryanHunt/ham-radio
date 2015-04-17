@@ -121,7 +121,7 @@ class RadioSetting
 
 class ProgrammedRadioSetting
 {
-	refers RadioSetting baseSetting
+	refers RadioSetting settingInfo
 	String value
 }
 
@@ -139,7 +139,7 @@ class ProgrammedRadioChannel
 {
 	int channelNumber
 	contains TransmitPower power
-	refers RadioChannel baseChannel
+	refers RadioChannel channelInfo
 }
 
 enum Tone

@@ -84,7 +84,7 @@ public class ChannelsView
 
     // Name
     
-    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__BASE_CHANNEL, RadioPackage.Literals.RADIO_CHANNEL__CHANNEL_NAME);
+    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__CHANNEL_INFO, RadioPackage.Literals.RADIO_CHANNEL__CHANNEL_NAME);
     map = EMFProperties.value(path).observeDetail(contentProvider.getKnownElements());
 
     columnViewer = new TableViewerColumn(tableViewer, SWT.NONE);
@@ -94,7 +94,7 @@ public class ChannelsView
     
     // Receive Frequency
 
-    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__BASE_CHANNEL, RadioPackage.Literals.RADIO_CHANNEL__RECEIVE_FREQUENCY,
+    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__CHANNEL_INFO, RadioPackage.Literals.RADIO_CHANNEL__RECEIVE_FREQUENCY,
         UnitsPackage.Literals.UNIT_VALUE__PREFERRED_DISPLAY);
     map = EMFProperties.value(path).observeDetail(contentProvider.getKnownElements());
 
@@ -105,7 +105,7 @@ public class ChannelsView
 
     // Transmit Frequency
 
-    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__BASE_CHANNEL, RadioPackage.Literals.RADIO_CHANNEL__TRANSMIT_FREQUENCY,
+    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__CHANNEL_INFO, RadioPackage.Literals.RADIO_CHANNEL__TRANSMIT_FREQUENCY,
         UnitsPackage.Literals.UNIT_VALUE__PREFERRED_DISPLAY);
     map = EMFProperties.value(path).observeDetail(contentProvider.getKnownElements());
 
@@ -116,7 +116,7 @@ public class ChannelsView
 
     // Receive Tone
 
-    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__BASE_CHANNEL, RadioPackage.Literals.RADIO_CHANNEL__RECEIVE_TONE);
+    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__CHANNEL_INFO, RadioPackage.Literals.RADIO_CHANNEL__RECEIVE_TONE);
     map = EMFProperties.value(path).observeDetail(contentProvider.getKnownElements());
 
     columnViewer = new TableViewerColumn(tableViewer, SWT.NONE);
@@ -126,7 +126,7 @@ public class ChannelsView
 
     // Transmit Tone
 
-    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__BASE_CHANNEL, RadioPackage.Literals.RADIO_CHANNEL__TRANSMIT_TONE);
+    path = FeaturePath.fromList(RadioPackage.Literals.PROGRAMMED_RADIO_CHANNEL__CHANNEL_INFO, RadioPackage.Literals.RADIO_CHANNEL__TRANSMIT_TONE);
     map = EMFProperties.value(path).observeDetail(contentProvider.getKnownElements());
 
     columnViewer = new TableViewerColumn(tableViewer, SWT.NONE);

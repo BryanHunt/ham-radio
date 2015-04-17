@@ -53,7 +53,7 @@ public class BaofengChannelBuilder
     programmedChannel.setPower(decodePower(channelSegment.getContents().get(channelOffset + POWER_OFFSET)));
 
     RadioChannel channel = RadioFactory.eINSTANCE.createRadioChannel();
-    programmedChannel.setBaseChannel(channel);
+    programmedChannel.setChannelInfo(channel);
 
     channel.setChannelName(decodeChannelName(channelAddress, memory));
     channel.setReceiveTone(decodeTone(channelSegment, channelOffset, RX_TONE_OFFSET));
